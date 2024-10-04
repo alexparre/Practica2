@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #03080c;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        .nav-links {
+            display: flex;
+            text-decoration: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin: 0 50px; 
+            list-style: none; 
+        }
+
+        .nav-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        main {
+            padding-top: 80px; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button.active {
+            background-color: #28a745; 
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #grid {
+            display: grid;
+            gap: 15px;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .image {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 10px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            height: 100%;
+        }
+
+        .image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: transform 0.3s ease-in-out;
+            object-fit: cover;
+        }
+
+        .image.circle {
+            border-radius: 50%;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .image.square img {
+            border-radius: 0;
+            aspect-ratio: 1;
+        }
+
+        .image.portrait {
+            aspect-ratio: 3/4; 
+        }
+
+        .image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .image:hover img {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px; 
+            }
+
+            .nav-links li {
+                margin: 0 20px; 
+            }
+
+            .button-container {
+                flex-direction: wrap; 
+                align-items: center;
+            }
+                    @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px; 
+            }
+
+            .nav-links li {
+                margin: 0 20px; 
+            }
+
+            .button-container {
+                flex-direction: wrap; 
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Servicios</a></li>
+            <li><a href="#">Nosotros</a></li>
+            <li><a href="#">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="button-container">
+            <button id="twoColumns">Grid de 2 columnas</button>
+            <button id="threeColumns" class="active">Grid de 3 columnas</button>
+            <button id="circle">Circulares</button>
+            <button id="square">Cuadrado</button>
+            <button id="portrait">Retrato</button>
+        </div>
+        
+        <div id="grid">
+            <div class="image"><img src="https://ibiza-spotlight1.b-cdn.net/sites/default/files/styles/auto_1500_width/public/beach-images/69732/slideshow-1464007580_6.jpg" alt="Playa 1"></div>
+            <div class="image"><img src="https://www.floatyourboatibiza.com/wp-content/uploads/2023/06/Cala-Conta-Ibiza-1200x675.jpg" alt="Playa 2"></div>
+            <div class="image"><img src="https://www.esnautic.com/wp-content/uploads/2022/09/DSC_0896.jpg" alt="Playa 3"></div>
+            <div class="image"><img src="https://i.gremicdn.pl/image/free/bb64d1ee9480c4e36b060a3e200c21e7/?t=crop:5184:3215:nowe:0:262,resize:fill:948:593,enlarge:1" alt="Noche en Ibiza"></div>
+            <div class="image"><img src="https://www.flightgift.com/media/wp/FG/2022/05/Header_ibiza-1.webp" alt ="Playa 4"></div>
+            <div class="image"><img src="https://residenceibiza.com/_next/image?url=https%3A%2F%2Fres.cloudinary.com%2Fdpkhstky9%2Fimage%2Fupload%2Fv1703878878%2FCala_Comte_Ibiza_209ec6c5b8.webp&w=3840&q=75" alt="Cala Comte"></div>
+        </div>
+    </main>
+
+    <script>
+const grid = document.getElementById('grid');
+const imageElements = document.querySelectorAll('.image');
+const imageURLs = [
+    'https://images.unsplash.com/photo-1576677682938-bdf30e71512c?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 
+    'https://images.unsplash.com/photo-1661416328442-0ae8443cfcd7?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1655399406554-7d682a7ffae8?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1596446052114-27b2cc6fb712?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1584463526211-d7ada06a1fa2?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1622890806166-111d7f6c7c97?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+];
+const buttons = document.querySelectorAll('button');
+let lastImageIndex = -1;
+
+function activateButton(buttonId) {
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+    document.getElementById(buttonId).classList.add('active');
+}
+
+document.getElementById('twoColumns').addEventListener('click', function() {
+    grid.style.gridTemplateColumns = 'repeat(2, 1fr)';
+    activateButton('twoColumns');
+});
+
+document.getElementById('threeColumns').addEventListener('click', function() {
+    grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+    activateButton('threeColumns');
+});
+
+document.getElementById('circle').addEventListener('click', function() {
+    imageElements.forEach(img => img.classList.remove('square', 'portrait'));
+    imageElements.forEach(img => img.classList.add('circle'));
+    activateButton('circle');
+});
+
+document.getElementById('square').addEventListener('click', function() {
+    imageElements.forEach(img => img.classList.remove('circle', 'portrait'));
+    imageElements.forEach(img => img.classList.add('square'));
+    activateButton('square');
+});
+
+document.getElementById('portrait').addEventListener('click', function() {
+    imageElements.forEach(img => img.classList.remove('circle', 'square'));
+    imageElements.forEach(img => img.classList.add('portrait'));
+    activateButton('portrait');
+});
+
+imageElements.forEach((div) => {
+    div.addEventListener('click', function(event) {
+        event.stopPropagation(); 
+        const imgElement = div.querySelector('img');
+        let randomIndex;
+
+        do {
+            randomIndex = Math.floor(Math.random() * imageURLs.length);
+        } while (randomIndex === lastImageIndex);
+
+        imgElement.src = imageURLs[randomIndex];
+        lastImageIndex = randomIndex;
+    });
+});
+    </script>
+</body>
+</html>
